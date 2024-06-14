@@ -1,5 +1,5 @@
 {
-  "timestamp": 1718335613077,
+  "timestamp": 1718341335337,
   "outputDir": ".vercel/output/static/_worker.js",
   "versions": {
     "@cloudflare/next-on-pages": "1.11.3"
@@ -28,7 +28,7 @@
             "overrides": []
           },
           "outputPath": "__next-on-pages-dist__/functions/api/hello.func.js",
-          "outputByteSize": 95938
+          "outputByteSize": 96018
         }
       ],
       "prerendered": [],
@@ -37,24 +37,19 @@
     "staticAssets": [
       "/404.html",
       "/500.html",
+      "/_next/static/chunks/664-bd157c0c144b8096.js",
       "/_next/static/chunks/framework-03cd576e71e4cd66.js",
       "/_next/static/chunks/main-930135e47dff83e9.js",
-      "/_next/static/chunks/pages/_app-7f290395dab45a0e.js",
+      "/_next/static/chunks/pages/_app-f947f2b663130af0.js",
       "/_next/static/chunks/pages/_error-5a00309fd5f4b49e.js",
-      "/_next/static/chunks/pages/index-96b3e490cd22840a.js",
+      "/_next/static/chunks/pages/about-91d2aee388ef9da5.js",
+      "/_next/static/chunks/pages/index-603ae2391bdd8d05.js",
       "/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js",
       "/_next/static/chunks/webpack-8fa1640cc84ba8fe.js",
-      "/_next/static/css/6b25432f67ef1376.css",
-      "/_next/static/css/876d048b5dab7c28.css",
-      "/_next/static/media/05a31a2ca4975f99-s.woff2",
-      "/_next/static/media/513657b02c5c193f-s.woff2",
-      "/_next/static/media/51ed15f9841b9f9d-s.woff2",
-      "/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2",
-      "/_next/static/media/d6b16ce4a6175f26-s.woff2",
-      "/_next/static/media/ec159349637c90ad-s.woff2",
-      "/_next/static/media/fd4db3eb5472fc27-s.woff2",
-      "/_next/static/vKXhAuzk_rHpOR-Fn1Ur5/_buildManifest.js",
-      "/_next/static/vKXhAuzk_rHpOR-Fn1Ur5/_ssgManifest.js",
+      "/_next/static/css/ef46db3751d8e999.css",
+      "/_next/static/j_mKIyXQJj3bUuGTihO6s/_buildManifest.js",
+      "/_next/static/j_mKIyXQJj3bUuGTihO6s/_ssgManifest.js",
+      "/about.html",
       "/favicon.ico",
       "/index.html",
       "/next.svg",

@@ -1,7 +1,7 @@
 
   
   globalThis._ENTRIES = {};
-/**/;self.__PRERENDER_MANIFEST="{\"version\":4,\"routes\":{},\"dynamicRoutes\":{},\"preview\":{\"previewModeId\":\"d9ab02bf03bb04a55b56d8d0da777486\",\"previewModeSigningKey\":\"06437735f21f66ae536d5fe90e0a167a32d2d2e55c2aa4a5eb6ef0b7014442b6\",\"previewModeEncryptionKey\":\"4b90031bafaff1606dca0f274b34fc98ef479650f53c6949e6bee0196e7a616e\"},\"notFoundRoutes\":[]}"
+/**/;self.__PRERENDER_MANIFEST="{\"version\":4,\"routes\":{},\"dynamicRoutes\":{},\"preview\":{\"previewModeId\":\"9f35b5e00cc909f703148ce397f201bf\",\"previewModeSigningKey\":\"d068e7498db8761b139d010632df0bc2cdab825e1312116b6e5d64e0be6f7208\",\"previewModeEncryptionKey\":\"c64b36f537603a4f261919ce9f8f6a4b2029a6a17ef906ebb79a22cda69e7bd7\"},\"notFoundRoutes\":[]}"
 /**/;/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({});
@@ -218,5 +218,5 @@ Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime`}proces
     fn(module, module.exports);
     return module.exports;
   }).call({}).default(
-    {"name":"pages/api/hello","staticRoutes":[{"page":"/","regex":"^/(?:/)?$","routeKeys":{},"namedRegex":"^/(?:/)?$"}],"dynamicRoutes":[],"nextConfig":{"basePath":""}}
+    {"name":"pages/api/hello","staticRoutes":[{"page":"/","regex":"^/(?:/)?$","routeKeys":{},"namedRegex":"^/(?:/)?$"},{"page":"/about","regex":"^/about(?:/)?$","routeKeys":{},"namedRegex":"^/about(?:/)?$"}],"dynamicRoutes":[],"nextConfig":{"basePath":""}}
   )
