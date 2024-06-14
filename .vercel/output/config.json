@@ -67,7 +67,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|j_mKIyXQJj3bUuGTihO6s)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|4ZbU8jBUkWyoxf_3NFGij)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
