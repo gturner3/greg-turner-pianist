@@ -1,5 +1,5 @@
 {
-  "timestamp": 1718333692634,
+  "timestamp": 1718335613077,
   "outputDir": ".vercel/output/static/_worker.js",
   "versions": {
     "@cloudflare/next-on-pages": "1.11.3"
@@ -37,8 +37,6 @@
     "staticAssets": [
       "/404.html",
       "/500.html",
-      "/_next/static/RjFWVzGl9RWatRZoESvs-/_buildManifest.js",
-      "/_next/static/RjFWVzGl9RWatRZoESvs-/_ssgManifest.js",
       "/_next/static/chunks/framework-03cd576e71e4cd66.js",
       "/_next/static/chunks/main-930135e47dff83e9.js",
       "/_next/static/chunks/pages/_app-7f290395dab45a0e.js",
@@ -55,6 +53,8 @@
       "/_next/static/media/d6b16ce4a6175f26-s.woff2",
       "/_next/static/media/ec159349637c90ad-s.woff2",
       "/_next/static/media/fd4db3eb5472fc27-s.woff2",
+      "/_next/static/vKXhAuzk_rHpOR-Fn1Ur5/_buildManifest.js",
+      "/_next/static/vKXhAuzk_rHpOR-Fn1Ur5/_ssgManifest.js",
       "/favicon.ico",
       "/index.html",
       "/next.svg",
