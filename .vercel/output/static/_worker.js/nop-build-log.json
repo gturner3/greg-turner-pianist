@@ -1,0 +1,205 @@
+{
+  "timestamp": 1718333692634,
+  "outputDir": ".vercel/output/static/_worker.js",
+  "versions": {
+    "@cloudflare/next-on-pages": "1.11.3"
+  },
+  "buildFiles": {
+    "functions": {
+      "invalid": [],
+      "middleware": [],
+      "edge": [
+        {
+          "relativePath": "/api/hello.func",
+          "config": {
+            "runtime": "edge",
+            "name": "api/hello",
+            "deploymentTarget": "v8-worker",
+            "entrypoint": "index.js",
+            "assets": [],
+            "framework": {
+              "slug": "nextjs",
+              "version": "14.1.0"
+            },
+            "environment": {}
+          },
+          "route": {
+            "path": "/api/hello",
+            "overrides": []
+          },
+          "outputPath": "__next-on-pages-dist__/functions/api/hello.func.js",
+          "outputByteSize": 95938
+        }
+      ],
+      "prerendered": [],
+      "ignored": []
+    },
+    "staticAssets": [
+      "/404.html",
+      "/500.html",
+      "/_next/static/RjFWVzGl9RWatRZoESvs-/_buildManifest.js",
+      "/_next/static/RjFWVzGl9RWatRZoESvs-/_ssgManifest.js",
+      "/_next/static/chunks/framework-03cd576e71e4cd66.js",
+      "/_next/static/chunks/main-930135e47dff83e9.js",
+      "/_next/static/chunks/pages/_app-7f290395dab45a0e.js",
+      "/_next/static/chunks/pages/_error-5a00309fd5f4b49e.js",
+      "/_next/static/chunks/pages/index-96b3e490cd22840a.js",
+      "/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js",
+      "/_next/static/chunks/webpack-8fa1640cc84ba8fe.js",
+      "/_next/static/css/6b25432f67ef1376.css",
+      "/_next/static/css/876d048b5dab7c28.css",
+      "/_next/static/media/05a31a2ca4975f99-s.woff2",
+      "/_next/static/media/513657b02c5c193f-s.woff2",
+      "/_next/static/media/51ed15f9841b9f9d-s.woff2",
+      "/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2",
+      "/_next/static/media/d6b16ce4a6175f26-s.woff2",
+      "/_next/static/media/ec159349637c90ad-s.woff2",
+      "/_next/static/media/fd4db3eb5472fc27-s.woff2",
+      "/favicon.ico",
+      "/index.html",
+      "/next.svg",
+      "/vercel.svg"
+    ],
+    "identifiers": {
+      "wasm": {},
+      "manifest": {},
+      "webpack": {
+        "67": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 55,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "73": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 4342,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "81": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 1747,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "147": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 4854,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "189": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 24461,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "195": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 50,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "595": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 2372,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "637": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 379,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "650": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 49,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "689": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 6,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "755": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 522,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "830": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 42549,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "910": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 87,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "933": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 1787,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        },
+        "941": {
+          "consumers": 1,
+          "groupedPath": "7d341cdfb57150fc7fbd9bb1fccbc63c",
+          "inlined": true,
+          "byteLength": 8388,
+          "consumersList": [
+            "/api/hello.func/index.js"
+          ]
+        }
+      }
+    }
+  }
+}
