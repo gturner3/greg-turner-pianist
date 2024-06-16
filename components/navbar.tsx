@@ -1,62 +1,44 @@
 import {
   Button,
-  Kbd,
-  Avatar,
   Link,
-  Input,
   Navbar as NextUINavbar,
   NavbarContent,
   NavbarMenu,
   NavbarMenuToggle,
   NavbarBrand,
-  link as linkStyles,
   NavbarItem,
   NavbarMenuItem,
 } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
-import clsx from 'clsx';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentNav, setCurrentNav] = useState('/');
-
-  const updateNav = (nav: string) => {
-    setCurrentNav(nav);
-    setIsMenuOpen(false);
-  };
+  const currentNav = usePathname();
 
   return (
     <NextUINavbar
       className="gap-0"
       maxWidth="xl"
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent
         className="sm:hidden"
         justify="start"
       >
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-        />
-        <Brand onClick={() => updateNav('/')} />
+        <NavbarMenuToggle />
+        <Brand />
       </NavbarContent>
 
       <NavbarContent
         className="hidden sm:flex"
         justify="center"
       >
-        <Brand onClick={() => updateNav('/')} />
+        <Brand />
         {siteConfig.navItems.map((item) => (
-          <NavbarItem
-            key={item.href}
-            isActive={currentNav === item.href}
-          >
+          <NavbarItem key={item.href}>
             <NavLink
+              currentNav={currentNav}
               href={item.href}
               label={item.label}
-              onPress={() => updateNav(item.href)}
             />
           </NavbarItem>
         ))}
@@ -64,7 +46,7 @@ export const Navbar = () => {
 
       <NavbarContent
         justify="end"
-        className="invisible sm:visible"
+        className="hidden sm:flex"
       >
         <NavbarItem>
           <Button
@@ -72,7 +54,6 @@ export const Navbar = () => {
             radius="full"
             as={Link}
             href="/contact"
-            onPress={() => updateNav('/contact')}
           >
             Contact
           </Button>
@@ -81,57 +62,56 @@ export const Navbar = () => {
 
       <NavbarMenu>
         {siteConfig.navItems.map((item) => (
-          <NavbarMenuItem
-            key={item.href}
-            isActive={currentNav === item.href}
-          >
+          <NavbarMenuItem key={item.href}>
             <NavLink
+              currentNav={currentNav}
               href={item.href}
               label={item.label}
-              onPress={() => updateNav(item.href)}
             />
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <NavLink
+            currentNav={currentNav}
+            href="/contact"
+            label="Contact"
+          />
+        </NavbarMenuItem>
       </NavbarMenu>
     </NextUINavbar>
   );
 };
 
 type BrandProps = {
-  onClick: () => void;
+  onPress?: () => void;
 };
 
 const Brand = (props: BrandProps) => {
   return (
     <NavbarBrand>
-      <NavLink
+      <Link
         href="/"
-        label="Greg Turner"
-        onPress={props.onClick}
-        bold
-      />
+        onPress={props.onPress}
+        color="foreground"
+        size="lg"
+        className="font-bold"
+      >
+        Greg Turner
+      </Link>
     </NavbarBrand>
   );
 };
 
 type NavLinkProps = {
   href: string;
-  bold?: boolean;
+  currentNav: string;
   label: string;
-  onPress: () => void;
 };
 
 const NavLink = (props: NavLinkProps) => {
-  const fontStyle = props.bold ? 'font-bold' : 'font-medium';
   return (
     <Link
-      onPress={props.onPress}
-      className={clsx(
-        linkStyles({ color: 'foreground' }),
-        `data-[active=true]:text-primary data-[active=true]:${fontStyle}`,
-        props.bold ? 'font-bold text-xl' : 'text-inherit'
-      )}
-      color="foreground"
+      color={props.currentNav === props.href ? 'primary' : 'foreground'}
       href={props.href}
     >
       {props.label}
