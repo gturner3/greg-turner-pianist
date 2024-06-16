@@ -1,10 +1,10 @@
 import DefaultLayout from '@/layouts/default';
-import Section from '@/layouts/section';
+import Page from '@/layouts/page';
 
 export default function IndexPage() {
   return (
     <DefaultLayout>
-      <Section id={'about'}>Contact</Section>
+      <Page>Contact</Page>
     </DefaultLayout>
   );
 }

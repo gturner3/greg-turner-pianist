@@ -1,0 +1,16 @@
+.about-summary-image-container {
+    width: 100%;
+}
+
+.about-summary-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+@media (min-width: 768px) {
+    .about-summary-image-container {
+        width: 30vw;
+    }
+}

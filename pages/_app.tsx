@@ -7,8 +7,9 @@ import { useRouter } from 'next/router';
 import { fontSans, fontMono } from '@/config/fonts';
 import '@/styles/globals.css';
 import '@/styles/splash.css';
+import '@/styles/row.css';
 import '@/styles/about.css';
-import '@/styles/section.css';
+import '@/styles/page.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

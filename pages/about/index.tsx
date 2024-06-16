@@ -1,19 +1,20 @@
 import DefaultLayout from '@/layouts/default';
-import Section from '@/layouts/section';
+import Page from '@/layouts/page';
 
 export default function IndexPage() {
   return (
     <DefaultLayout>
-      <Section>
-        <div className="flex flex-row flex-wrap about">
-          <div className="image-container">
+      <Page>
+        <div className="row">
+          <div className="about-image-container">
             <img
               src="/greg_headshot.JPG"
-              className="image"
+              className="about-image"
             />
           </div>
+          About
         </div>
-      </Section>
+      </Page>
     </DefaultLayout>
   );
 }
