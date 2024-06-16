@@ -1,24 +1,6 @@
 {
-  "sortedMiddleware": [],
+  "version": 3,
   "middleware": {},
-  "functions": {
-    "/api/hello": {
-      "files": [
-        "prerender-manifest.js",
-        "server/edge-runtime-webpack.js",
-        "server/pages/api/hello.js"
-      ],
-      "name": "pages/api/hello",
-      "page": "/api/hello",
-      "matchers": [
-        {
-          "regexp": "^/api/hello$",
-          "originalSource": "/api/hello"
-        }
-      ],
-      "wasm": [],
-      "assets": []
-    }
-  },
-  "version": 2
+  "functions": {},
+  "sortedMiddleware": []
 }
