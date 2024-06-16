@@ -62,7 +62,10 @@ export const Navbar = () => {
         ))}
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent
+        justify="end"
+        className="invisible sm:visible"
+      >
         <NavbarItem>
           <Button
             color="primary"
@@ -70,7 +73,6 @@ export const Navbar = () => {
             as={Link}
             href="/contact"
             onPress={() => updateNav('/contact')}
-            variant="ghost"
           >
             Contact
           </Button>
