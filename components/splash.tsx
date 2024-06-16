@@ -3,7 +3,7 @@ export default function Splash() {
     <div className="splash-container">
       <img
         src="/greg_at_piano.png"
-        className="w-full h-full object-cover splash-sm md:splash-md"
+        className="splash"
       />
       <div className="splash-overlay" />
       <div className="splash-overlay-text">
