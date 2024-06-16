@@ -4,7 +4,16 @@ import Section from '@/layouts/section';
 export default function IndexPage() {
   return (
     <DefaultLayout>
-      <Section id={'about'}>About</Section>
+      <Section>
+        <div className="flex flex-row flex-wrap about">
+          <div className="image-container">
+            <img
+              src="/greg_headshot.JPG"
+              className="image"
+            />
+          </div>
+        </div>
+      </Section>
     </DefaultLayout>
   );
 }

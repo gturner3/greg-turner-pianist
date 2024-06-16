@@ -16,6 +16,7 @@ export default function DefaultLayout({
       <Navbar />
       <div className="flex flex-col flex-grow">{children}</div>
       <footer className="flex justify-center p-6">
+        <span className="font-thin pr-2">Last updated June 2024</span>
         <ThemeSwitch />
       </footer>
     </div>
