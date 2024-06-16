@@ -1,8 +1,9 @@
-import { Link } from "@nextui-org/react";
+import { Link } from '@nextui-org/react';
 
-import { Head } from "./head";
+import { Head } from './head';
 
-import { Navbar } from "@/components/navbar";
+import { Navbar } from '@/components/navbar';
+import { ThemeSwitch } from '@/components/theme-switch';
 
 export default function DefaultLayout({
   children,
@@ -10,22 +11,12 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col h-screen">
+    <div className="h-screen overflow-scroll">
       <Head />
       <Navbar />
-      <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
-        {children}
-      </main>
-      <footer className="w-full flex items-center justify-center py-3">
-        <Link
-          isExternal
-          className="flex items-center gap-1 text-current"
-          href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
-          title="nextui.org homepage"
-        >
-          <span className="text-default-600">Powered by</span>
-          <p className="text-primary">NextUI</p>
-        </Link>
+      <div className="flex flex-col flex-grow">{children}</div>
+      <footer className="flex justify-center p-6">
+        <ThemeSwitch />
       </footer>
     </div>
   );

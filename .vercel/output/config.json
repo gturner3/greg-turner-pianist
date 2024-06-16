@@ -67,7 +67,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|8J0lAPlTRW47_yMH__1V0)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|4063d9_m2q97TkypN5qfB)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
@@ -146,20 +146,16 @@
       "path": "about",
       "contentType": "text/html; charset=utf-8"
     },
-    "blog.html": {
-      "path": "blog",
-      "contentType": "text/html; charset=utf-8"
-    },
-    "docs.html": {
-      "path": "docs",
+    "contact.html": {
+      "path": "contact",
       "contentType": "text/html; charset=utf-8"
     },
     "index.html": {
       "path": "index",
       "contentType": "text/html; charset=utf-8"
     },
-    "pricing.html": {
-      "path": "pricing",
+    "services.html": {
+      "path": "services",
       "contentType": "text/html; charset=utf-8"
     }
   },
