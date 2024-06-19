@@ -18,7 +18,7 @@ export const Navbar = () => {
   return (
     <NextUINavbar
       className="gap-0"
-      maxWidth="xl"
+      maxWidth="full"
     >
       <NavbarContent
         className="sm:hidden"
