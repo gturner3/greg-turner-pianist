@@ -13,6 +13,11 @@
    align-items: center;
 }
 
+.about-summary-h1 {
+    font-size: 8vw;
+    font-weight: 300;
+}
+
 .about-summary-image {
     width: 100%;
     height: 100%;
@@ -28,5 +33,9 @@
 
     .about-summary-text {
         width: 60%;
+    }
+
+    .about-summary-h1 {
+        font-size: 5vw;
     }
 }

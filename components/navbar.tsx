@@ -51,6 +51,7 @@ export const Navbar = () => {
         <NavbarItem>
           <Button
             color="primary"
+            variant="shadow"
             radius="full"
             as={Link}
             href="/contact"
@@ -71,11 +72,16 @@ export const Navbar = () => {
           </NavbarMenuItem>
         ))}
         <NavbarMenuItem>
-          <NavLink
-            currentNav={currentNav}
+          <Button
+            color="primary"
+            variant="shadow"
+            radius="full"
+            as={Link}
             href="/contact"
-            label="Contact"
-          />
+            fullWidth
+          >
+            Contact
+          </Button>
         </NavbarMenuItem>
       </NavbarMenu>
     </NextUINavbar>
