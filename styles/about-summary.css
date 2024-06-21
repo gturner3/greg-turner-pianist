@@ -7,15 +7,15 @@
     justify-content: space-between;
 }
 
+.about-summary-h1 {
+    font-size: 8vw;
+    font-weight: 300;
+}
+
 .about-summary-text {
    max-width: unset;
    display: flex;
    align-items: center;
-}
-
-.about-summary-h1 {
-    font-size: 8vw;
-    font-weight: 300;
 }
 
 .about-summary-image {

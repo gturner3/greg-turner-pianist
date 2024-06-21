@@ -11,14 +11,18 @@ import {
 } from '@nextui-org/react';
 import { siteConfig } from '@/config/site';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export const Navbar = () => {
   const currentNav = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <NextUINavbar
       className="gap-0"
       maxWidth="xl"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent
         className="sm:hidden"
@@ -36,6 +40,7 @@ export const Navbar = () => {
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
             <NavLink
+              setIsMenuOpen={setIsMenuOpen}
               currentNav={currentNav}
               href={item.href}
               label={item.label}
@@ -51,12 +56,11 @@ export const Navbar = () => {
         <NavbarItem>
           <Button
             color="primary"
-            variant="shadow"
             radius="full"
             as={Link}
             href="/contact"
           >
-            Contact
+            Request a quote
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -65,6 +69,7 @@ export const Navbar = () => {
         {siteConfig.navItems.map((item) => (
           <NavbarMenuItem key={item.href}>
             <NavLink
+              setIsMenuOpen={setIsMenuOpen}
               currentNav={currentNav}
               href={item.href}
               label={item.label}
@@ -72,16 +77,12 @@ export const Navbar = () => {
           </NavbarMenuItem>
         ))}
         <NavbarMenuItem>
-          <Button
-            color="primary"
-            variant="shadow"
-            radius="full"
-            as={Link}
+          <NavLink
+            setIsMenuOpen={setIsMenuOpen}
+            currentNav={currentNav}
             href="/contact"
-            fullWidth
-          >
-            Contact
-          </Button>
+            label="Request a quote"
+          />
         </NavbarMenuItem>
       </NavbarMenu>
     </NextUINavbar>
@@ -112,6 +113,7 @@ type NavLinkProps = {
   href: string;
   currentNav: string;
   label: string;
+  setIsMenuOpen: (isMenuOpen: boolean) => void;
 };
 
 const NavLink = (props: NavLinkProps) => {
@@ -119,6 +121,7 @@ const NavLink = (props: NavLinkProps) => {
     <Link
       color={props.currentNav === props.href ? 'primary' : 'foreground'}
       href={props.href}
+      onPress={() => props.setIsMenuOpen(false)}
     >
       {props.label}
     </Link>

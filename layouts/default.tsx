@@ -15,7 +15,9 @@ export default function DefaultLayout({
       <div>
         {children}
         <div className="flex justify-center p-6 items-center">
-          <span className="font-thin pr-2 text-xs">Last updated June 2024</span>
+          <span className="font-thin pr-2 text-s">
+            gregturnerpianist@gmail.com
+          </span>
           <ThemeSwitch />
         </div>
       </div>
