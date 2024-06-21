@@ -119,7 +119,7 @@ type NavLinkProps = {
 const NavLink = (props: NavLinkProps) => {
   return (
     <Link
-      color={props.currentNav === props.href ? 'primary' : 'foreground'}
+      color={props.currentNav === props.href ? 'secondary' : 'foreground'}
       href={props.href}
       onPress={() => props.setIsMenuOpen(false)}
     >

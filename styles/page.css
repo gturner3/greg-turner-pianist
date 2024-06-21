@@ -1,5 +1,4 @@
 .page {
     width: 100%;
-    height: calc(100vh - 138px);
-    overflow: scroll;
+    min-height: calc(100vh - 138px);
 }

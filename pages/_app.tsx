@@ -9,6 +9,7 @@ import '@/styles/globals.css';
 import '@/styles/splash.css';
 import '@/styles/about.css';
 import '@/styles/about-summary.css';
+import '@/styles/services-summary.css';
 import '@/styles/page.css';
 
 export default function App({ Component, pageProps }: AppProps) {
