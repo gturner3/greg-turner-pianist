@@ -37,7 +37,7 @@ function ServiceSummary({ title, blurb, anchor }: ServiceSummaryProps) {
       <Link
         href={`services#${anchor}`}
         showAnchorIcon
-        className="text-xl pb-4 text-primary"
+        className="text-xl pb-4 text-secondary"
       >
         {title}
       </Link>

@@ -1,10 +1,15 @@
 import DefaultLayout from '@/layouts/default';
-import Page from '@/layouts/page';
+import Section from '@/layouts/section';
 
 export default function IndexPage() {
   return (
     <DefaultLayout>
-      <Page>Contact</Page>
+      <Section maxWidth={768}>
+        <div>
+          <h1>Request a quote</h1>
+          <p>Prices may vary</p>
+        </div>
+      </Section>
     </DefaultLayout>
   );
 }

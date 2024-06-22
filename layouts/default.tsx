@@ -1,7 +1,6 @@
 import { Head } from './head';
 
 import { Navbar } from '@/components/navbar';
-import Page from './page';
 import Footer from '@/components/footer';
 
 export default function DefaultLayout({
@@ -13,10 +12,8 @@ export default function DefaultLayout({
     <div className="h-screen overflow-scroll">
       <Head />
       <Navbar />
-      <Page>
-        {children}
-        <Footer />
-      </Page>
+      {children}
+      <Footer />
     </div>
   );
 }

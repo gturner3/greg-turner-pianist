@@ -10,7 +10,6 @@ import '@/styles/splash.css';
 import '@/styles/about.css';
 import '@/styles/about-summary.css';
 import '@/styles/services-summary.css';
-import '@/styles/page.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
