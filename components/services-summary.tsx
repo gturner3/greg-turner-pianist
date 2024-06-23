@@ -12,12 +12,12 @@ export default function ServicesSummary() {
         />
         <ServiceSummary
           title="Theory"
-          blurb="I teach online music theory classes that complement the performance curriculum."
+          blurb="I teach music theory classes that complement the performance curriculum."
           anchor="theory"
         />
         <ServiceSummary
           title="History"
-          blurb="My online music history class provides context for and insight into your repertoire."
+          blurb="My music history class provides context for and insight into your repertoire."
           anchor="history"
         />
       </div>

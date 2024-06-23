@@ -22,25 +22,15 @@ export default function AboutSummary() {
               goal is for all of my students to develop a deep love for music
               and the music-making process.
             </p>
-            <div className="flex flex-wrap gap-4 items-center">
-              <Button
-                color="default"
-                radius="full"
-                as={Link}
-                href="/about"
-              >
-                Learn more
-              </Button>
-              <Button
-                color="primary"
-                // variant="shadow"
-                radius="full"
-                as={Link}
-                href="/contact"
-              >
-                Request a quote
-              </Button>
-            </div>
+            <Button
+              color="default"
+              radius="full"
+              as={Link}
+              size="lg"
+              href="/about"
+            >
+              Learn more
+            </Button>
           </div>
         </div>
         <div className="about-summary-image-container">

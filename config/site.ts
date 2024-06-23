@@ -5,10 +5,6 @@ export const siteConfig = {
   description: "Pianist and educator",
   navItems: [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
       label: "About",
       href: "/about",
     },

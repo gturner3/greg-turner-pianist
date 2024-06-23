@@ -6,10 +6,11 @@ import { Link } from '@nextui-org/link';
 
 export default function Footer() {
   return (
-    <div className="pb-6">
-      <Section>
+    <div>
+      <Section isFirst>
         <div className="flex flex-col">
           <Divider className="my-4" />
+
           <div className="w-full flex justify-center items-center gap-6">
             <Link
               color="foreground"
@@ -41,6 +42,23 @@ export default function Footer() {
             </Link>
             <ThemeSwitch />
           </div>
+        </div>
+        <div className="w-full text-center pt-5 pb-2 text-sm text-default-400">
+          This site is protected by reCAPTCHA and the Google{' '}
+          <Link
+            size="sm"
+            href="https://policies.google.com/privacy"
+          >
+            Privacy Policy
+          </Link>{' '}
+          and{' '}
+          <Link
+            size="sm"
+            href="https://policies.google.com/terms"
+          >
+            Terms of Service
+          </Link>{' '}
+          apply.
         </div>
       </Section>
     </div>

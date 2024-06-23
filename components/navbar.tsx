@@ -60,7 +60,7 @@ export const Navbar = () => {
             as={Link}
             href="/contact"
           >
-            Request a quote
+            Contact
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -81,7 +81,7 @@ export const Navbar = () => {
             setIsMenuOpen={setIsMenuOpen}
             currentNav={currentNav}
             href="/contact"
-            label="Request a quote"
+            label="Contact"
           />
         </NavbarMenuItem>
       </NavbarMenu>

@@ -1,15 +1,363 @@
 import DefaultLayout from '@/layouts/default';
 import Section from '@/layouts/section';
+import { Button } from '@nextui-org/button';
+import { CheckboxGroup, Checkbox } from '@nextui-org/checkbox';
+import { Input, Textarea } from '@nextui-org/input';
+import { Link } from '@nextui-org/link';
+import { useEffect, useState } from 'react';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from '@nextui-org/modal';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+
+const daysOfWeek = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+const timeSlots = new Map(
+  Object.entries({
+    morning: 'Morning (~9am-12pm)',
+    earlyAfternoon: 'Early afternoon (~12pm-3pm)',
+    lateAfternoon: 'Late afternoon (~3pm-5pm)',
+    evening: 'Evening (~5pm-8pm)',
+  })
+);
 
 export default function IndexPage() {
+  const [selectedDays, setSelectedDays] = useState<string[]>([]);
+  const [selectedTimeSlots, setSelectedTimeSlots] = useState<string[]>([]);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [zip, setZip] = useState('');
+
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+
+  const [validationModalOpen, setValidationModalOpen] = useState(false);
+  const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [submitState, setSubmitState] = useState<string | undefined>(undefined);
+  const submitting = submitState === 'inProgress';
+
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+
+  const invalidInputs =
+    !email ||
+    !name ||
+    !zip ||
+    isInvalidEmail(email) ||
+    isInvalidZip(zip) ||
+    isInvalidTimeslots(selectedDays, selectedTimeSlots);
+
+  function onSubmit() {
+    setSubmitState('inProgress');
+  }
+
+  if (submitState === 'success') {
+    return (
+      <DefaultLayout>
+        <Section
+          maxWidth={768}
+          isFirst
+        >
+          <div className="w-full pb-8">
+            <h1 className="text-2xl pb-2">Thank you!</h1>
+            Your response has been submitted. I'll get back to you as soon as I
+            can.
+          </div>
+        </Section>
+      </DefaultLayout>
+    );
+  }
+
   return (
     <DefaultLayout>
-      <Section maxWidth={768}>
-        <div>
-          <h1>Request a quote</h1>
-          <p>Prices may vary</p>
+      <Section
+        maxWidth={768}
+        isFirst
+      >
+        <div className="w-full pb-4">
+          <h1 className="text-2xl pb-2">Request a trial lesson</h1>
+          <p className="text-sm">
+            Please provide your contact information, location, and availability.
+          </p>
+          <span className="text-sm text-default-400">
+            You can also reach me at&nbsp;
+          </span>
+          <Link
+            size="sm"
+            href="mailto:gregturnerpianist@gmail.com"
+          >
+            gregturnerpianist@gmail.com
+          </Link>
+          <span className="text-sm text-default-400">
+            &nbsp;if you prefer! I will get back to you as soon as I can.
+          </span>
         </div>
+        <div className="w-full max-w-[400px] pb-4">
+          <Input
+            type="text"
+            label="Name"
+            isRequired
+            value={name}
+            onValueChange={setName}
+            errorMessage="Please provide your name"
+            isDisabled={submitting}
+            isInvalid={submitAttempted && !name}
+          />
+        </div>
+        <div className="w-full max-w-[400px] pb-4">
+          <Input
+            type="email"
+            label="Email"
+            isRequired
+            onValueChange={setEmail}
+            value={email}
+            isInvalid={submitAttempted && isInvalidEmail(email)}
+            errorMessage="Please enter a valid email"
+            isDisabled={submitting}
+          />
+        </div>
+        <div className="w-full max-w-[400px] pb-4">
+          <Input
+            type="text"
+            inputMode="numeric"
+            label="Zip"
+            isRequired
+            value={zip}
+            onValueChange={setZip}
+            isInvalid={submitAttempted && isInvalidZip(zip)}
+            errorMessage="Please enter a valid zip code"
+            isDisabled={submitting}
+          />
+        </div>
+        <CheckboxGroup
+          label="Which days are you available for lessons?"
+          value={selectedDays}
+          className="pb-6"
+          orientation="horizontal"
+          onValueChange={setSelectedDays}
+          isRequired
+          isInvalid={submitAttempted && selectedDays.length === 0}
+          errorMessage="Please select at least one day"
+          isDisabled={submitting}
+        >
+          {[
+            'Sunday',
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+          ].map((day) => (
+            <Checkbox
+              key={day}
+              value={day}
+            >
+              {day}
+            </Checkbox>
+          ))}
+        </CheckboxGroup>
+        {daysOfWeek
+          .filter((day) => selectedDays.includes(day))
+          .map((selectedDay) => (
+            <CheckboxGroup
+              className="pb-6"
+              key={`${selectedDay}-timeSlots`}
+              value={selectedTimeSlots.filter((selectedTimeSlot) =>
+                selectedTimeSlot.includes(selectedDay)
+              )}
+              isRequired
+              label={`What times on ${selectedDay} work for you?`}
+              onValueChange={(selection) => {
+                setSelectedTimeSlots([
+                  ...selectedTimeSlots.filter(
+                    (selectedTimeSlot) =>
+                      !selectedTimeSlot.includes(selectedDay)
+                  ),
+                  ...selection,
+                ]);
+              }}
+              isInvalid={
+                submitAttempted &&
+                selectedTimeSlots.find((selectedTimeSlot) =>
+                  selectedTimeSlot.includes(selectedDay)
+                ) === undefined
+              }
+              errorMessage="Please select at least one time slot"
+              isDisabled={submitting}
+            >
+              {Array.from(timeSlots.keys()).map((timeSlot) => (
+                <Checkbox
+                  key={`${selectedDay}-${timeSlot}`}
+                  value={`${selectedDay}-${timeSlot}`}
+                >
+                  {timeSlots.get(timeSlot)}
+                </Checkbox>
+              ))}
+            </CheckboxGroup>
+          ))}
+        <Textarea
+          className="pb-7"
+          label="Any questions, comments, or concerns?"
+          isDisabled={submitting}
+        />
+        <Button
+          color="primary"
+          isDisabled={(invalidInputs && submitAttempted) || submitting}
+          radius="full"
+          fullWidth
+          onPress={() => {
+            if (invalidInputs) {
+              setValidationModalOpen(true);
+            }
+            setSubmitAttempted(true);
+            if (submitAttempted && !invalidInputs) {
+              setConfirmationModalOpen(true);
+            }
+          }}
+          isLoading={submitting}
+        >
+          Submit
+        </Button>
       </Section>
+      <Modal
+        placement="center"
+        size="sm"
+        isOpen={validationModalOpen}
+        backdrop="blur"
+        onOpenChange={setValidationModalOpen}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Invalid input
+              </ModalHeader>
+              <ModalBody>
+                Please make sure all fields are populated correctly.
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  color="primary"
+                  radius="full"
+                  onPress={() => {
+                    onClose();
+                  }}
+                >
+                  OK
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <Modal
+        placement="center"
+        size="sm"
+        backdrop="blur"
+        isOpen={confirmationModalOpen}
+        onOpenChange={setConfirmationModalOpen}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Are you sure?
+              </ModalHeader>
+              <ModalBody>This action cannot be undone.</ModalBody>
+              <ModalFooter>
+                <Button
+                  color="danger"
+                  variant="light"
+                  radius="full"
+                  onPress={onClose}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  color="primary"
+                  radius="full"
+                  onPress={() => {
+                    onSubmit();
+                    onClose();
+                  }}
+                >
+                  Submit
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <Modal
+        placement="center"
+        size="sm"
+        isOpen={errorModalOpen}
+        backdrop="blur"
+        onOpenChange={setErrorModalOpen}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Oops!</ModalHeader>
+              <ModalBody>Something went wrong. Please try again.</ModalBody>
+              <ModalFooter>
+                <Button
+                  color="danger"
+                  variant="light"
+                  radius="full"
+                  onPress={onClose}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  color="primary"
+                  radius="full"
+                  onPress={() => {
+                    onSubmit();
+                    onClose();
+                  }}
+                >
+                  Submit
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </DefaultLayout>
+  );
+}
+
+function isInvalidEmail(value: string) {
+  return value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i) ? false : true;
+}
+
+function isInvalidZip(value: string) {
+  return value.match(/^[0-9]{5}(?:-[0-9]{4})?$/i) ? false : true;
+}
+
+function isInvalidTimeslots(
+  selectedDays: string[],
+  selectedTimeslots: string[]
+) {
+  return (
+    selectedDays.length === 0 ||
+    selectedDays.find(
+      (day) =>
+        selectedTimeslots.find((timeSlot) => timeSlot.includes(day)) ===
+        undefined
+    ) !== undefined
   );
 }
