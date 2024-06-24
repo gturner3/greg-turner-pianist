@@ -90,18 +90,16 @@ export default function IndexPage() {
           <p className="text-sm">
             Please provide your contact information, location, and availability.
           </p>
-          <span className="text-sm text-default-400">
-            You can also reach me at&nbsp;
-          </span>
-          <Link
-            size="sm"
-            href="mailto:gregturnerpianist@gmail.com"
-          >
-            gregturnerpianist@gmail.com
-          </Link>
-          <span className="text-sm text-default-400">
-            &nbsp;if you prefer! I will get back to you as soon as I can.
-          </span>
+          <p className="text-sm text-default-400">
+            You can also reach me at{' '}
+            <Link
+              size="sm"
+              href="mailto:regturnerpianist@gmail.com"
+            >
+              gregturnerpianist@gmail.com
+            </Link>{' '}
+            if you prefer! I will get back to you as soon as I can.
+          </p>
         </div>
         <div className="w-full max-w-[400px] pb-4">
           <Input
