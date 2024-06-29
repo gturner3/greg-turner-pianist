@@ -62,10 +62,6 @@ export default function IndexPage() {
     setSubmitState('inProgress');
   }
 
-  useEffect(() => {
-    console.log(selectedTimeSlots);
-  }, [selectedTimeSlots]);
-
   if (submitState === 'success') {
     return (
       <DefaultLayout>
