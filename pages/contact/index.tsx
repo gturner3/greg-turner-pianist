@@ -23,18 +23,18 @@ const daysOfWeek = [
   'Friday',
   'Saturday',
 ];
-const timeSlots = new Map(
-  Object.entries({
-    morning: 'Morning (~9am-12pm)',
-    earlyAfternoon: 'Early afternoon (~12pm-3pm)',
-    lateAfternoon: 'Late afternoon (~3pm-5pm)',
-    evening: 'Evening (~5pm-8pm)',
-  })
-);
+
+const timeSlots = [
+  'Morning (~9am-12pm)',
+  'Early afternoon (~12pm-3pm)',
+  'Late afternoon (~3pm-5pm)',
+  'Evening (~5pm-8pm)',
+];
 
 export default function IndexPage() {
-  const [selectedDays, setSelectedDays] = useState<string[]>([]);
-  const [selectedTimeSlots, setSelectedTimeSlots] = useState<string[]>([]);
+  const [selectedTimeSlots, setSelectedTimeSlots] = useState<
+    Map<string, string[]>
+  >(new Map());
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [zip, setZip] = useState('');
@@ -56,11 +56,15 @@ export default function IndexPage() {
     !zip ||
     isInvalidEmail(email) ||
     isInvalidZip(zip) ||
-    isInvalidTimeslots(selectedDays, selectedTimeSlots);
+    isInvalidTimeslots(selectedTimeSlots);
 
   function onSubmit() {
     setSubmitState('inProgress');
   }
+
+  useEffect(() => {
+    console.log(selectedTimeSlots);
+  }, [selectedTimeSlots]);
 
   if (submitState === 'success') {
     return (
@@ -95,6 +99,7 @@ export default function IndexPage() {
             <Link
               size="sm"
               href="mailto:regturnerpianist@gmail.com"
+              color="secondary"
             >
               gregturnerpianist@gmail.com
             </Link>{' '}
@@ -140,24 +145,26 @@ export default function IndexPage() {
         </div>
         <CheckboxGroup
           label="Which days are you available for lessons?"
-          value={selectedDays}
+          value={Array.from(selectedTimeSlots.keys())}
           className="pb-6"
           orientation="horizontal"
-          onValueChange={setSelectedDays}
+          onValueChange={(newSelectedDays) => {
+            setSelectedTimeSlots((prev) => {
+              const newSelectedTimeSlots = new Map();
+              daysOfWeek
+                .filter((day) => newSelectedDays.includes(day))
+                .forEach((day) => {
+                  newSelectedTimeSlots.set(day, prev.get(day) || []);
+                });
+              return newSelectedTimeSlots;
+            });
+          }}
           isRequired
-          isInvalid={submitAttempted && selectedDays.length === 0}
+          isInvalid={submitAttempted && selectedTimeSlots.size === 0}
           errorMessage="Please select at least one day"
           isDisabled={submitting}
         >
-          {[
-            'Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-          ].map((day) => (
+          {daysOfWeek.map((day) => (
             <Checkbox
               key={day}
               value={day}
@@ -167,40 +174,37 @@ export default function IndexPage() {
           ))}
         </CheckboxGroup>
         {daysOfWeek
-          .filter((day) => selectedDays.includes(day))
+          .filter((day) => selectedTimeSlots.has(day))
           .map((selectedDay) => (
             <CheckboxGroup
               className="pb-6"
               key={`${selectedDay}-timeSlots`}
-              value={selectedTimeSlots.filter((selectedTimeSlot) =>
-                selectedTimeSlot.includes(selectedDay)
-              )}
+              value={selectedTimeSlots.get(selectedDay) || []}
               isRequired
               label={`What times on ${selectedDay} work for you?`}
               onValueChange={(selection) => {
-                setSelectedTimeSlots([
-                  ...selectedTimeSlots.filter(
-                    (selectedTimeSlot) =>
-                      !selectedTimeSlot.includes(selectedDay)
-                  ),
-                  ...selection,
-                ]);
+                setSelectedTimeSlots((prev) => {
+                  const newSelectedTimeSlots = new Map(prev);
+                  newSelectedTimeSlots.set(
+                    selectedDay,
+                    timeSlots.filter((timeSlot) => selection.includes(timeSlot))
+                  );
+                  return newSelectedTimeSlots;
+                });
               }}
               isInvalid={
                 submitAttempted &&
-                selectedTimeSlots.find((selectedTimeSlot) =>
-                  selectedTimeSlot.includes(selectedDay)
-                ) === undefined
+                selectedTimeSlots.get(selectedDay)?.length === 0
               }
               errorMessage="Please select at least one time slot"
               isDisabled={submitting}
             >
-              {Array.from(timeSlots.keys()).map((timeSlot) => (
+              {timeSlots.map((timeSlot) => (
                 <Checkbox
-                  key={`${selectedDay}-${timeSlot}`}
-                  value={`${selectedDay}-${timeSlot}`}
+                  key={timeSlot}
+                  value={timeSlot}
                 >
-                  {timeSlots.get(timeSlot)}
+                  {timeSlot}
                 </Checkbox>
               ))}
             </CheckboxGroup>
@@ -346,16 +350,11 @@ function isInvalidZip(value: string) {
   return value.match(/^[0-9]{5}(?:-[0-9]{4})?$/i) ? false : true;
 }
 
-function isInvalidTimeslots(
-  selectedDays: string[],
-  selectedTimeslots: string[]
-) {
+function isInvalidTimeslots(selectedTimeSlots: Map<string, string[]>) {
   return (
-    selectedDays.length === 0 ||
-    selectedDays.find(
-      (day) =>
-        selectedTimeslots.find((timeSlot) => timeSlot.includes(day)) ===
-        undefined
-    ) !== undefined
+    selectedTimeSlots.size === 0 ||
+    Array.from(selectedTimeSlots.values()).find(
+      (timeSlots) => timeSlots.length === 0
+    )
   );
 }

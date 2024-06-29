@@ -48,12 +48,14 @@ export default function Footer() {
           <Link
             size="sm"
             href="https://policies.google.com/privacy"
+            color="secondary"
           >
             Privacy Policy
           </Link>{' '}
           and{' '}
           <Link
             size="sm"
+            color="secondary"
             href="https://policies.google.com/terms"
           >
             Terms of Service
