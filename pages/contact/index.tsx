@@ -4,7 +4,7 @@ import { Button } from '@nextui-org/button';
 import { CheckboxGroup, Checkbox } from '@nextui-org/checkbox';
 import { Input, Textarea } from '@nextui-org/input';
 import { Link } from '@nextui-org/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -39,16 +39,15 @@ export default function IndexPage() {
   const [name, setName] = useState('');
   const [zip, setZip] = useState('');
 
-  const [submitAttempted, setSubmitAttempted] = useState(false);
-
   const [validationModalOpen, setValidationModalOpen] = useState(false);
   const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
   const [submitState, setSubmitState] = useState<string | undefined>(undefined);
+  const submitAttempted = submitState !== undefined;
   const submitting = submitState === 'inProgress';
 
-  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const invalidInputs =
     !email ||
@@ -60,6 +59,27 @@ export default function IndexPage() {
 
   function onSubmit() {
     setSubmitState('inProgress');
+    setErrorModalOpen(false);
+    executeRecaptcha &&
+      executeRecaptcha('submit')
+        // todo: replace with submit implementation
+        .then(async () => {
+          await new Promise<void>((resolve) =>
+            setTimeout(() => {
+              resolve();
+            }, 2000)
+          );
+        })
+        .then(() => {
+          // setSubmitState('success');
+          // todo: restore success once the actual submit implementation is complete
+          setErrorModalOpen(true);
+          setSubmitState('error');
+        })
+        .catch(() => {
+          setErrorModalOpen(true);
+          setSubmitState('error');
+        });
   }
 
   if (submitState === 'success') {
@@ -216,12 +236,11 @@ export default function IndexPage() {
           radius="full"
           fullWidth
           onPress={() => {
-            if (invalidInputs) {
-              setValidationModalOpen(true);
-            }
-            setSubmitAttempted(true);
-            if (submitAttempted && !invalidInputs) {
+            if (!invalidInputs) {
               setConfirmationModalOpen(true);
+            } else if (!submitAttempted && invalidInputs) {
+              setValidationModalOpen(true);
+              setSubmitState('invalid');
             }
           }}
           isLoading={submitting}
