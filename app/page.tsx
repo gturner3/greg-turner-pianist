@@ -1,3 +1,5 @@
+'use client';
+
 import AboutSummary from '@/components/about-summary';
 import ServicesSummary from '@/components/services-summary';
 import Splash from '@/components/splash';

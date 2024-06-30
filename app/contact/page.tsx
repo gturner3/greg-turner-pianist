@@ -1,3 +1,5 @@
+'use client';
+
 import DefaultLayout from '@/layouts/default';
 import Section from '@/layouts/section';
 import { Button } from '@nextui-org/button';

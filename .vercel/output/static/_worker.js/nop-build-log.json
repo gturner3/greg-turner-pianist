@@ -1,0 +1,62 @@
+{
+  "timestamp": 1719779807278,
+  "outputDir": ".vercel/output/static/_worker.js",
+  "versions": {
+    "@cloudflare/next-on-pages": "1.12.0"
+  },
+  "buildFiles": {
+    "functions": {
+      "invalid": [],
+      "middleware": [],
+      "edge": [],
+      "prerendered": [],
+      "ignored": []
+    },
+    "staticAssets": [
+      "/.DS_Store",
+      "/404.html",
+      "/500.html",
+      "/_next/static/YTPk1y10MpHbVx9JlCgUg/_buildManifest.js",
+      "/_next/static/YTPk1y10MpHbVx9JlCgUg/_ssgManifest.js",
+      "/_next/static/chunks/109-6e4dbaeed34e295a.js",
+      "/_next/static/chunks/545-a1c0e68bf88b22e7.js",
+      "/_next/static/chunks/826-c961f918819e1cf0.js",
+      "/_next/static/chunks/framework-ecc4130bc7a58a64.js",
+      "/_next/static/chunks/main-8389dbc8664b12e4.js",
+      "/_next/static/chunks/pages/_app-c877b384c21c7a09.js",
+      "/_next/static/chunks/pages/_error-77823ddac6993d35.js",
+      "/_next/static/chunks/pages/about-2891a1519cf5f0aa.js",
+      "/_next/static/chunks/pages/contact-544f1cb194471af9.js",
+      "/_next/static/chunks/pages/index-864a9cddfbf36c08.js",
+      "/_next/static/chunks/pages/services-364ee3b2053cfe15.js",
+      "/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js",
+      "/_next/static/chunks/webpack-d38be8d96a62f950.js",
+      "/_next/static/css/fc22fe94b5a251ef.css",
+      "/_next/static/media/05a31a2ca4975f99-s.woff2",
+      "/_next/static/media/122c360d7fe6d395-s.p.woff2",
+      "/_next/static/media/513657b02c5c193f-s.woff2",
+      "/_next/static/media/51ed15f9841b9f9d-s.woff2",
+      "/_next/static/media/9bbb7f84f3601865-s.woff2",
+      "/_next/static/media/9f05b6a2725a7318-s.woff2",
+      "/_next/static/media/a8eac78432f0a60b-s.woff2",
+      "/_next/static/media/c740c1d45290834f-s.woff2",
+      "/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2",
+      "/_next/static/media/d0697bdd3fb49a78-s.woff2",
+      "/_next/static/media/d6b16ce4a6175f26-s.woff2",
+      "/_next/static/media/ec159349637c90ad-s.woff2",
+      "/_next/static/media/fd4db3eb5472fc27-s.woff2",
+      "/about.html",
+      "/contact.html",
+      "/favicon.ico",
+      "/greg_at_piano.png",
+      "/greg_headshot.JPG",
+      "/index.html",
+      "/services.html"
+    ],
+    "identifiers": {
+      "wasm": {},
+      "manifest": {},
+      "webpack": {}
+    }
+  }
+}
