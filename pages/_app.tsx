@@ -21,15 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider navigate={router.push}>
       <NextThemesProvider>
-        <GoogleReCaptchaProvider
-          reCaptchaKey="6LftN_8pAAAAAGDU26DontFxBrqsl6ECMd5wy4kU"
-          scriptProps={{
-            async: false,
-            defer: false,
-            appendTo: 'head',
-            nonce: undefined,
-          }}
-        >
+        <GoogleReCaptchaProvider reCaptchaKey="6LftN_8pAAAAAGDU26DontFxBrqsl6ECMd5wy4kU">
           <Component {...pageProps} />
         </GoogleReCaptchaProvider>
       </NextThemesProvider>
