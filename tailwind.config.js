@@ -29,7 +29,10 @@ module.exports = {
               DEFAULT: '#4A65BF', // accent 11
             },
             warning: {
-              DEFAULT: '#ff5f5f',
+              DEFAULT: '#B71C1C',
+            },
+            danger: {
+              DEFAULT: '#FFFFFF', // white
             },
             focus: '#32447B', // accent 9
           },
@@ -48,7 +51,9 @@ module.exports = {
             },
             warning: {
               DEFAULT: '#B71C1C',
-              foreground: '#FFFFFF', // white
+            },
+            danger: {
+              DEFAULT: '#FFFFFF', // white
             },
             focus: '#4A65BF', // accent 9
           },
