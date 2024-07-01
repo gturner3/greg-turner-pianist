@@ -19,7 +19,7 @@ export default function UnderConstruction() {
           </Link>
           <Link
             color="foreground"
-            href="https://facebook.com"
+            href="https://www.facebook.com/profile.php?id=61561084240413"
             target="_blank"
           >
             <FacebookIcon />
