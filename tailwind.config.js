@@ -28,6 +28,9 @@ module.exports = {
             secondary: {
               DEFAULT: '#4A65BF', // accent 11
             },
+            warning: {
+              DEFAULT: '#ff5f5f',
+            },
             focus: '#32447B', // accent 9
           },
         },
@@ -42,6 +45,10 @@ module.exports = {
             },
             secondary: {
               DEFAULT: '#93B1FF', // accent 11
+            },
+            warning: {
+              DEFAULT: '#B71C1C',
+              foreground: '#FFFFFF', // white
             },
             focus: '#4A65BF', // accent 9
           },

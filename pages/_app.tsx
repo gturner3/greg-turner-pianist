@@ -3,10 +3,7 @@ import type { AppProps } from 'next/app';
 import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { useRouter } from 'next/router';
-import {
-  GoogleReCaptchaProvider,
-  GoogleReCaptcha,
-} from 'react-google-recaptcha-v3';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import '@/styles/globals.css';
 import '@/styles/splash.css';
@@ -20,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider navigate={router.push}>
       <NextThemesProvider>
-        <GoogleReCaptchaProvider reCaptchaKey="6LcKIf8pAAAAAIHdSQp_fG8-RDTYzmFNdhjhiGT1">
+        <GoogleReCaptchaProvider reCaptchaKey="6LcClgQqAAAAACAEkhusFmItV5nv66CPXVXGncqg">
           <Component {...pageProps} />
         </GoogleReCaptchaProvider>
       </NextThemesProvider>
