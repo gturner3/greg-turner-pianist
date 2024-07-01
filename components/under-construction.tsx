@@ -3,8 +3,8 @@ import { Link } from '@nextui-org/link';
 
 export default function UnderConstruction() {
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-[1280px] px-6 py-4 bg-warning text-foreground">
+    <div className="w-full flex justify-center bg-warning">
+      <div className="w-full max-w-[1280px] px-6 py-4 text-foreground">
         <div className="text-center pb-2">
           This website is under construction. In the meantime, here are my
           socials and contact information!
