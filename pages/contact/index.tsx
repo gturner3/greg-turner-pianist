@@ -4,7 +4,7 @@ import { Button } from '@nextui-org/button';
 import { CheckboxGroup, Checkbox } from '@nextui-org/checkbox';
 import { Input, Textarea } from '@nextui-org/input';
 import { Link } from '@nextui-org/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Modal,
   ModalContent,
@@ -13,7 +13,6 @@ import {
   ModalFooter,
 } from '@nextui-org/modal';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { getRequestContext } from '@cloudflare/next-on-pages';
 
 const daysOfWeek = [
   'Sunday',
@@ -47,6 +46,11 @@ export default function IndexPage() {
   const [submitState, setSubmitState] = useState<string | undefined>(undefined);
   const submitAttempted = submitState !== undefined;
   const submitting = submitState === 'inProgress';
+  const abortController = useRef(new AbortController());
+
+  useEffect(() => {
+    return () => abortController.current.abort();
+  }, []);
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -59,24 +63,31 @@ export default function IndexPage() {
     isInvalidTimeslots(selectedTimeSlots);
 
   function onSubmit() {
+    abortController.current.abort();
+    abortController.current = new AbortController();
     setSubmitState('inProgress');
     setErrorModalOpen(false);
     executeRecaptcha &&
       executeRecaptcha('submit')
-        // todo: replace with submit implementation
-        .then(async () => {
-          await new Promise<void>((resolve) =>
-            setTimeout(() => {
-              resolve();
-            }, 2000)
-          );
-        })
-        .then(() => fetch('/api/verify'))
-        .then(() => {
-          // setSubmitState('success');
-          // todo: restore success once the actual submit implementation is complete
-          setErrorModalOpen(true);
-          setSubmitState('error');
+        .then((token: string) =>
+          fetch('/api/submit', {
+            method: 'POST',
+            body: JSON.stringify({
+              token,
+              email,
+              name,
+              zip,
+              selectedTimeSlots,
+            }),
+            signal: abortController.current.signal,
+          })
+        )
+        .then((response) => {
+          if (response.ok) {
+            setSubmitState('success');
+          } else {
+            throw new Error();
+          }
         })
         .catch(() => {
           setErrorModalOpen(true);
@@ -267,6 +278,14 @@ export default function IndexPage() {
                 Please make sure all fields are populated correctly.
               </ModalBody>
               <ModalFooter>
+                <Button
+                  color="danger"
+                  variant="light"
+                  radius="full"
+                  onPress={onClose}
+                >
+                  Cancel
+                </Button>
                 <Button
                   color="primary"
                   radius="full"

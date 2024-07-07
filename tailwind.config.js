@@ -28,10 +28,10 @@ module.exports = {
             secondary: {
               DEFAULT: '#4A65BF', // accent 11
             },
-            warning: {
+            construction: {
               DEFAULT: '#B71C1C',
             },
-            danger: {
+            warning: {
               DEFAULT: '#FFFFFF', // white
             },
             focus: '#32447B', // accent 9
@@ -49,10 +49,10 @@ module.exports = {
             secondary: {
               DEFAULT: '#93B1FF', // accent 11
             },
-            warning: {
+            construction: {
               DEFAULT: '#B71C1C',
             },
-            danger: {
+            warning: {
               DEFAULT: '#FFFFFF', // white
             },
             focus: '#4A65BF', // accent 9
