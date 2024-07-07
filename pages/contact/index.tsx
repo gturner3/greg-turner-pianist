@@ -79,7 +79,7 @@ export default function IndexPage() {
               email,
               name,
               zip,
-              selectedTimeSlots,
+              availability: getAvailability(selectedTimeSlots),
             }),
             signal: abortController.current.signal,
           })
@@ -395,4 +395,10 @@ function isInvalidTimeslots(selectedTimeSlots: Map<string, string[]>) {
       (timeSlots) => timeSlots.length === 0
     )
   );
+}
+
+function getAvailability(selectedTimeslots: Map<string, string[]>) {
+  return Array.from(selectedTimeslots.entries())
+    .map((entry) => `${entry[0].substring(0, 3)}: ${entry[1].join(', ')}`)
+    .join('\n');
 }

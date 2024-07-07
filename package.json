@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"wrangler": "npx wrangler pages dev",
-		"build": "next build",
+		"build": "npx @cloudflare/next-on-pages@1",
 		"start": "next start",
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},

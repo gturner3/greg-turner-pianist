@@ -14,7 +14,7 @@ type SubmitRequestBody = {
   name: string;
   email: string;
   zip: string;
-  selectedTimeslots: Map<string, string[]>;
+  availability: string;
 };
 
 type RecaptchaResponse = {
@@ -68,14 +68,15 @@ export default async function handler(req: NextRequest) {
                   submitRequest.name,
                   submitRequest.email,
                   submitRequest.zip,
-                  getAvailability(submitRequest.selectedTimeslots),
+                  submitRequest.availability,
                 ],
               ],
             }),
           }
         );
+      } else {
+        throw new Error();
       }
-      throw new Error();
     })
     .then((sheetsResponse) => {
       //   if (!sheetsResponse.ok) {
@@ -93,7 +94,8 @@ export default async function handler(req: NextRequest) {
         },
       });
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log('error: ', e);
       return new Response(JSON.stringify({}), {
         status: 400,
         headers: {
@@ -109,10 +111,4 @@ function getDate(currentDate: Date) {
 
 function getTime(currentDate: Date) {
   return `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
-}
-
-function getAvailability(selectedTimeslots: Map<string, string[]>) {
-  return Array.from(selectedTimeslots.entries())
-    .map((entry) => `${entry[0].substring(0, 3)}: ${entry[1].join(', ')}`)
-    .join('\n');
 }
